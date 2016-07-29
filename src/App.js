@@ -7,14 +7,12 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-        msg: 'hello',
-        total: 0
-    };
-    this.bot = this.setBot(this.getBots()[0])
+    this.state = {};
+    this.bot = this.initBot(this.getBots()[0])
   }
 
   componentDidMount() {
+    this.startBot(this.bot)
   }
 
   getBots() {
@@ -23,11 +21,23 @@ class App extends Component {
     })
   }
 
-  setBot(name) {
+  initBot(name) {
     let bot = {}
     bot.name = name
     bot.config = config[bot.name]
     return bot
+  }
+
+  startBot(bot) {
+    bot.config.conversation.messages.forEach((message)=>{
+      this.setState({messages: message += message});
+    });
+  }
+  
+  askBot(event) {
+    if (event.key === 'Enter') {
+      this.setState({value: event.target.value});
+    }
   }
 
   render() {
@@ -35,14 +45,20 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h3>Hi I am {this.bot.name}</h3>
+          <h3>{this.state.value}</h3>
         </div>
         <div className="App-intro">
           <div className="answer">
-          Hello?
+            <p>{this.state.messages}</p>
           </div>
 
           <div className="question">
-            <input type="text"/>
+
+            <input
+              type="text"
+              onKeyPress={this.askBot.bind(this)}
+            />
+
           </div>
           
         </div>

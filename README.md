@@ -1,6 +1,8 @@
-#TheBots
+#The Bots
 
-TheBots are personal configurable bot. It uses predefined choices and answers based on configuration.
+## TheBots.io
+
+The Bots: Create your personal bot with questions& answers.
 
 ## Folder Structure
 
