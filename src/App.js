@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import config from './config.json';
 
+const ERROR_TEXT = 'Cannot understand...';
+
 class App extends Component {
 
   constructor(props) {
@@ -41,7 +43,7 @@ class App extends Component {
   updateState(msg) {
     let randomKey = Math.random().toString(36).substr(2, 5)
     this.chat.push(<h3 key={msg + randomKey}>{msg}</h3>);   
-    setTimeout(()=>{this.setState({chat: this.chat})}, 1000)
+    this.setState({chat: this.chat})
   }
 
   startAction(name) {
@@ -70,10 +72,12 @@ class App extends Component {
         this.startAction(this.currentAction)
       } else {
         this.potentialActions.forEach((action) =>{
-          if(action.message.toLowerCase().indexOf(inputVal.toLowerCase())) {
+          if(action.message.toLowerCase().search(inputVal.toLowerCase())) {
             this.currentAction = action.action
             this.potentialActions.splice(0,this.potentialActions.length)
             this.startAction(this.currentAction)
+          } else {
+            this.updateState(ERROR_TEXT)
           }
         });
       }
