@@ -15,11 +15,11 @@
 				],
 				"choices": [
 					{
-						"message": "- Learn about Will",
+						"message": "Learn about Will",
 						"action": "talk"
 					},
 					{
-						"message": "- Just talk",
+						"message": "Just talk",
 						"action": "learn"
 					}
 				]
@@ -60,6 +60,23 @@
 					{
 						"message": "Side projects?",
 						"action": "projects"
+					}
+
+				]
+			},
+			{
+				"name": "football",
+				"messages": [
+					"Which team you play??!!"
+				],
+				"choices": [
+					{
+						"message": "Barcelona",
+						"action": "barca"
+					},
+					{
+						"message": "Real",
+						"action": "real"
 					}
 
 				]

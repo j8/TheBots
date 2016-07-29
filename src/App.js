@@ -41,7 +41,7 @@ class App extends Component {
   updateState(msg) {
     let randomKey = Math.random().toString(36).substr(2, 5)
     this.chat.push(<h3 key={msg + randomKey}>{msg}</h3>);   
-    this.setState({chat: this.chat})
+    setTimeout(()=>{this.setState({chat: this.chat})}, 1000)
   }
 
   startAction(name) {
@@ -53,7 +53,6 @@ class App extends Component {
         action.choices.forEach((choice) =>{
           this.updateState(choice.message)
           this.potentialActions.push(choice)
-          console.log('List of potential actions:::', this.potentialActions);
         })
       }
     });
@@ -71,10 +70,10 @@ class App extends Component {
         this.startAction(this.currentAction)
       } else {
         this.potentialActions.forEach((action) =>{
-          if(action.message.indexOf(inputVal)) {
+          if(action.message.toLowerCase().indexOf(inputVal.toLowerCase())) {
             this.currentAction = action.action
-            this.startAction(action.action)
             this.potentialActions.splice(0,this.potentialActions.length)
+            this.startAction(this.currentAction)
           }
         });
       }
