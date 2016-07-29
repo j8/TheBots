@@ -10,6 +10,8 @@ class App extends Component {
     this.state = {};
     this.chat = []
     this.bot = this.initBot(this.getBots()[0])
+    this.currentAction = ''
+    this.potentialActions = []
   }
 
   componentDidMount() {
@@ -31,11 +33,9 @@ class App extends Component {
 
   startBot(bot) {
 
-    bot.config.conversation.messages.forEach((msg, i)=>{
+    bot.config.conversation.messages.forEach((msg)=>{
        this.updateState(msg)
     });
-
-    this.startAction(bot.config.conversation.startAction)
   }
 
   updateState(msg) {
@@ -43,13 +43,35 @@ class App extends Component {
     this.setState({chat: this.chat})
   }
 
-  startAction(action) {
-
+  startAction(name) {
+    this.bot.config.actions.map((action)=>{
+      if(action.name === name) {
+        action.messages.forEach((msg) =>{
+          this.updateState(msg)
+        })
+        action.choices.forEach((choice) =>{
+          this.updateState(choice.message)
+          this.potentialActions.splice(0,this.potentialActions)
+          this.potentialActions.push(choice)
+        })
+      }
+    });
   }
   
   askBot(event) {
     if (event.key === 'Enter') {
+
       this.updateState(event.target.value)
+
+      if(this.currentAction == '' && !this.potentialActions) {
+        this.currentAction = this.bot.config.conversation.startAction;
+        this.startAction(this.currentAction)
+      } else {
+        this.potentialActions.forEach((action) =>{
+          
+        });
+      }
+
     }
   }
 

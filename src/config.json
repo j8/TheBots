@@ -5,21 +5,21 @@
 				"Hi there",
 				"I am there and I am Will"
 				],
-			"startAction": "intro"
+			"startAction": "start"
 		},
 		"actions": [
 			{
-				"name": "intro",
+				"name": "start",
 				"messages": [
 					"Want to learn about me? Or just here to talk?"
 				],
 				"choices": [
 					{
-						"message": "Learn about Will",
+						"message": "- Learn about Will",
 						"action": "talk"
 					},
 					{
-						"message": "Just talk",
+						"message": "- Just talk",
 						"action": "learn"
 					}
 				]
