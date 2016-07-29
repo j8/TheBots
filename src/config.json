@@ -1,0 +1,71 @@
+{
+	"Will": {
+		"conversation": {
+			"messages": [
+				"Hi there",
+				"I am there and I am Will"
+				],
+			"startAction": "intro"
+		},
+		"actions": [
+			{
+				"name": "intro",
+				"messages": [
+					"Want to learn about me? Or just here to talk?"
+				],
+				"choices": [
+					{
+						"message": "Learn about Will",
+						"action": "talk"
+					},
+					{
+						"message": "Just talk",
+						"action": "learn"
+					}
+				]
+			},
+			{
+				"name": "talk",
+				"messages": [
+					"Cool",
+					"Any topic?",
+					"What do we want to talk about?"
+				],
+				"choices": [
+					{
+						"message": "Weather",
+						"action": "weather"
+					},
+					{
+						"message": "Football",
+						"action": "football"
+					}
+				]
+			},
+			{
+				"name": "learn",
+				"messages": [
+					"Great!!",
+					"What do we want to learn about?"
+				],
+				"choices": [
+					{
+						"message": "My Biography",
+						"action": "biography"
+					},
+					{
+						"message": "Latest articles",
+						"action": "articles"
+					},
+					{
+						"message": "Side projects?",
+						"action": "projects"
+					}
+
+				]
+			}
+		]
+		
+	},
+	"Jordan": {}
+}
